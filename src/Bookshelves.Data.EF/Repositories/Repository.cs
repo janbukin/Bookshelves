@@ -1,44 +1,56 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using Bookshelves.Data.Model;
-using Bookshelves.Data.Repositories;
+using Bookshelves.Data.Repositories.Interfaces;
 
 namespace Bookshelves.Data.EF.Repositories
 {
 	public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
 	{
-		protected ConcurrentDictionary<Guid, TEntity> _entities = new ConcurrentDictionary<Guid, TEntity>();
+	    protected BookshelvesDbContext Context;
 
-		public IEnumerable<TEntity> GetAll()
+	    protected Repository(BookshelvesDbContext context)
+	    {
+	        Context = context;
+	    }
+
+	    protected DbSet<TEntity> Set
+	    {
+	        get { return Context.Set<TEntity>(); }
+	    }
+
+	    public IEnumerable<TEntity> GetAll()
 		{ 
-			return _entities.Values;
+		    return Set.AsNoTracking().ToList();
 		}
 
-		public void Add(TEntity item)
-		{
-			item.Id = Guid.NewGuid();
-			_entities[item.Id] = item;
-		}
+        public TEntity Get(Guid id)
+        {
+            return Set.Find(id);
+        }
 
-		public TEntity Get(Guid id)
-		{
-			TEntity item;
-			_entities.TryGetValue(id, out item);
-			return item;
-		}
+        public void Add(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Added;
+        }
 
-		public TEntity Remove(Guid id)
+		public void Update(TEntity entity)
 		{
-			TEntity item;
-			_entities.TryRemove(id, out item);
-			return item;
-		}
+            Context.Entry(entity).State = EntityState.Modified;
+        }
 
-		public void Update(TEntity item)
-		{
-			_entities[item.Id] = item;
-		}
-	}
+        public void Delete(Guid id)
+        {
+            var stub = new TEntity {Id = id};
+            Context.Entry(stub).State = EntityState.Deleted;
+        }
+
+        public void Delete(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Deleted;
+        }
+    }
 
 }

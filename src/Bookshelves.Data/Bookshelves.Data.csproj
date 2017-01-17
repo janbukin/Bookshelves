@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Genre.cs" />

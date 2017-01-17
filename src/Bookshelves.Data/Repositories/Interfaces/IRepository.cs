@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using Bookshelves.Data.Model;
 
-namespace Bookshelves.Data.Repositories
+namespace Bookshelves.Data.Repositories.Interfaces
 {
 	public interface IRepository<TEntity> where TEntity : Entity
 	{
-		void Add(TEntity item);
-
 		IEnumerable<TEntity> GetAll();
 
 		TEntity Get(Guid id);
 
-		TEntity Remove(Guid id);
+        void Add(TEntity entity);
 
-		void Update(TEntity item);
-	}
+		void Update(TEntity entity);
+
+        void Delete(Guid id);
+
+        void Delete(TEntity entity);
+    }
 }
