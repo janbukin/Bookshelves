@@ -8,6 +8,10 @@ namespace Bookshelves.Data.EF
 {
     public class BookshelvesDbContext : DbContext
     {
+        public BookshelvesDbContext()
+        {
+        }
+
         public BookshelvesDbContext(string connStringName) : base(connStringName)
         {
         }

@@ -7,7 +7,7 @@ namespace Bookshelves.Data.EF.Configurations
     {
         public BookConfiguration()
         {
-            
+            Property(x => x.Name).IsRequired();
         }
     }
 }

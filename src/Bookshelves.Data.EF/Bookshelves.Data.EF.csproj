@@ -57,6 +57,7 @@
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\GenreRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bookshelves.Data\Bookshelves.Data.csproj">
