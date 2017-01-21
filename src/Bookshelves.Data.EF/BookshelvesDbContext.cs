@@ -22,6 +22,7 @@ namespace Bookshelves.Data.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add(new GuidIdentityConvention());
 
             modelBuilder.Configurations.Add(new BookConfiguration());
