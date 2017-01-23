@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201701230916293_InitialMigration.cs" />
+    <Compile Include="Migrations\201701230916293_InitialMigration.Designer.cs">
+      <DependentUpon>201701230916293_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +72,11 @@
       <Project>{a037b474-8d25-4c5d-902e-e569cadcd4bf}</Project>
       <Name>Bookshelves.Data.EF</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701230916293_InitialMigration.resx">
+      <DependentUpon>201701230916293_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
