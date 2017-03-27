@@ -41,16 +41,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BookService.cs" />
+    <Compile Include="Services\GenreService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bookshelves.Data\Bookshelves.Data.csproj">
+      <Project>{b4caf7c1-09d1-47ee-8e74-058313a21216}</Project>
+      <Name>Bookshelves.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookshelves.Domain.Core\Bookshelves.Domain.Core.csproj">
+      <Project>{09cbef03-9457-4af4-98fb-7a4f8f525513}</Project>
+      <Name>Bookshelves.Domain.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bookshelves\Bookshelves.csproj">
       <Project>{9a9d4f06-e36f-4d26-9b0f-5c7b06f8e1ac}</Project>
       <Name>Bookshelves</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

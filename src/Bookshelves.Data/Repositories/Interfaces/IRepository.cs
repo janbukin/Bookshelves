@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Bookshelves.Data.Model;
 
 namespace Bookshelves.Data.Repositories.Interfaces
 {
 	public interface IRepository<TEntity> where TEntity : Entity
 	{
-		IEnumerable<TEntity> GetAll();
+        Task<List<TEntity>> GetAllAsync();
 
-		TEntity Get(Guid id);
+        Task<TEntity> GetAsync(Guid id);
 
         void Add(TEntity entity);
 
