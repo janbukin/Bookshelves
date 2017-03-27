@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bookshelves.Data.Model;
+using Bookshelves.Data.Repositories.Interfaces;
 using Bookshelves.Domain.Core.DTO;
 using Bookshelves.Domain.Core.Services;
 
@@ -9,19 +10,21 @@ namespace Bookshelves.Domain.Services
 {
     public class GenreService: IGenreService
     {
-        public GenreService()
+        private readonly IGenreRepository _genreRepository;
+
+        public GenreService(IGenreRepository genreRepository)
         {
-            
+            _genreRepository = genreRepository;
         }
 
-        public Task<Genre> GetAsync(Guid id)
+        public async Task<Genre> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _genreRepository.GetAsync(id);
         }
 
-        public Task<List<Genre>> GetAllAsync()
+        public async Task<List<Genre>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _genreRepository.GetAllAsync();
         }
 
         public Task SaveChangesAsync(GenreDto bookDto)
@@ -29,9 +32,11 @@ namespace Bookshelves.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Task Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var book = await _genreRepository.GetAsync(id);
+
+            _genreRepository.Delete(book);
         }
     }
 }

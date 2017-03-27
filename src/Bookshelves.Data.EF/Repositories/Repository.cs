@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
+using System.Threading.Tasks;
 using Bookshelves.Data.Model;
 using Bookshelves.Data.Repositories.Interfaces;
 
@@ -21,14 +21,14 @@ namespace Bookshelves.Data.EF.Repositories
 	        get { return Context.Set<TEntity>(); }
 	    }
 
-	    public IEnumerable<TEntity> GetAll()
+	    public async Task<List<TEntity>> GetAllAsync()
 		{ 
-		    return Set.AsNoTracking().ToList();
+		    return await Set.AsNoTracking().ToListAsync();
 		}
 
-        public TEntity Get(Guid id)
+        public async Task<TEntity> GetAsync(Guid id)
         {
-            return Set.Find(id);
+            return await Set.FindAsync(id);
         }
 
         public void Add(TEntity entity)

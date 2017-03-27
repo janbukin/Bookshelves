@@ -12,7 +12,7 @@ namespace Bookshelves.Domain.Core.Services
 
         Task<List<Book>> GetAllAsync();
 
-        Task SaveChangesAsync(BookDto bookDto);
+        Task SaveBookAsync(BookDto bookDto);
 
         Task Delete(Guid id);
     }

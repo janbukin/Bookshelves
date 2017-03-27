@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Bookshelves.Data.EF
 {
@@ -23,6 +24,30 @@ namespace Bookshelves.Data.EF
                 try
                 {
                     _context.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+
+                    throw;
+                }
+            }
+        }
+
+        public async Task CommitAsync()
+        {
+            if (!_context.ChangeTracker.HasChanges())
+            {
+                return;
+            }
+
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
 
                     transaction.Commit();
                 }
