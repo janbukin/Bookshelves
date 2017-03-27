@@ -1,5 +1,5 @@
 # Bookshelves
-RESTfull application on Web API and AngularJS (1.x)
+RESTfull application on Web API and Angular
 
 ##Requirements
 
